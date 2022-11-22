@@ -1,0 +1,25 @@
+GET http://localhost:3000/
+
+### LOGIN REQUEST
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{"username": "Alfred"}
+
+### REGENERATES ACCESS_TOKEN
+POST http://localhost:3000/token
+Content-Type: application/json
+
+{"refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWxmcmVkIiwiaWF0IjoxNjY5MDc3MjA4fQ.qDo7P8hqPK3nc0KVA_ss42dVE7LqGx570hemAR5_tkI"}
+
+###
+DELETE http://localhost:3000/logout
+Content-Type: application/json
+
+{
+  "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWxmcmVkIiwiaWF0IjoxNjY5MDc3Njc5fQ.MX1cGc73GtRarGvx4Kmug-5IuIz6XmvuiqmEisiUZ4o"
+}
+
+### DATA CONSUMPTION
+GET http://localhost:3000/posts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWxmcmVkIiwiaWF0IjoxNjY5MDc5MTQ4LCJleHAiOjE2NjkwNzkxOTN9.iCh9RMPohX1s1uFbjUURaMdr-pCpS0eJfi0AbZl9ZIk
