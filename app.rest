@@ -1,19 +1,27 @@
+### HTTP TEST
 GET http://localhost:3000/
 
-### LOGIN REQUEST
-POST http://localhost:3000/login
+### SIGN UP REQUEST
+POST http://localhost:3000/auth/login
 Content-Type: application/json
 
-{"username": "Alfred"}
+{"username": "Ben",
+"password": "BenKumekucha"}
+### LOGIN REQUEST
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{"username": "Alfred",
+"password": "Beijingbike5"}
 
 ### REGENERATES ACCESS_TOKEN
-POST http://localhost:3000/token
+POST http://localhost:3000/auth/token
 Content-Type: application/json
 
-{"refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWxmcmVkIiwiaWF0IjoxNjY5MDc3MjA4fQ.qDo7P8hqPK3nc0KVA_ss42dVE7LqGx570hemAR5_tkI"}
+{"refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQmVuIiwiaWF0IjoxNjY5MzE1Mzc3LCJleHAiOjE2NjkzMTU0MjJ9.o7IXKfqUOtsfSXJE1rzett4cdIeJ3Kf2s3pXTNeWxt0"}
 
 ###
-DELETE http://localhost:3000/logout
+DELETE http://localhost:3000/auth/logout
 Content-Type: application/json
 
 {
