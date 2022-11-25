@@ -6,6 +6,8 @@ const {
   generateRefreshToken,
   authenticateToken,
 } = require("../Controllers/AuthenticationStaff");
+require("dotenv").config();
+const jwt = require("jsonwebtoken");
 
 const Credentials = require("../Models/Credentials");
 
@@ -50,17 +52,17 @@ router.post("/token", (req, res) => {
       .json({ message: "Refresh token has not been found." });
   }
 
-  //   Trap 3 : Regenerates our short term access token
-  jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
+  //   Trap 3 : Regenerates our short term access token (Its all about verifying payload and extracting info
+  // again to be used in the regeneration of the access token.)
+  jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, payload) => {
     if (err)
-      return res
-        .status(403)
-        .json({
-          message:
-            "We have your refresh token but somehow we are encountering some issues.",
-        });
-    const accessToken = generateAccessToken({ name: user.name });
-    res.json({ accessToken: accessToken });
+      return res.status(403).json({
+        message:
+          "We have your refresh token but somehow we are encountering some issues.",
+      });
+    const accessToken = generateAccessToken({ name: payload.name });
+    const refreshToken = generateRefreshToken({ name: payload.name });
+    res.json({ accessToken, refreshToken });
   });
 });
 
