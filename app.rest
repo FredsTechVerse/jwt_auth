@@ -5,20 +5,20 @@ GET http://localhost:3000/
 POST http://localhost:3000/auth/login
 Content-Type: application/json
 
-{"username": "Alfred",
-"password": "Beijingbike5"}
+{"username": "Benson",
+"password": "BingBingBing"}
 ### REGISTER REQUEST
 POST http://localhost:3000/auth/register
 Content-Type: application/json
 
-{"username": "Alfred",
-"password": "Beijingbike5"}
+{"username": "Benson",
+"password": "BingBingBing"}
 
 ### REGENERATES ACCESS_TOKEN
 POST http://localhost:3000/auth/token
 Content-Type: application/json
 
-{"refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWxmcmVkIiwicm9sZSI6Im5ldyB1c2VyIiwiaWF0IjoxNjY5Mzk3NTYzLCJleHAiOjE3MDA5NTUxNjN9.CI3FpxTxBMXgyLAd2Ml3MyBjt6IuykC4wlWDpLcz6pI"}
+{"refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQmVuc29uIiwicm9sZSI6Im5ldyB1c2VyIiwiaWF0IjoxNjcxNjUxNDE0LCJleHAiOjE3MDMyMDkwMTR9.ZcpHWgwDFiA4amhldNN_-LWGol5xy6cZZVOAfnI2KUk"}
 
 ###
 DELETE http://localhost:3000/auth/logout
@@ -30,4 +30,4 @@ Content-Type: application/json
 
 ### DATA CONSUMPTION
 GET http://localhost:3000/auth/posts
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWxmcmVkIiwiaWF0IjoxNjY5Mzk3MjQ4LCJleHAiOjE2NjkzOTczNjh9.EQseyzC4J6KDVqv8AWIu_C_eQg3JSfg7-auY3KyXUOQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQmVuc29uIiwicm9sZSI6Im5ldyB1c2VyIiwiaWF0IjoxNjcxNjUxNDE0LCJleHAiOjE2NzE2NTIzMTR9.agaCN10XCkBfZJBZ-XCRJ9xqOErL-Zxv8hpbN7sSw2g

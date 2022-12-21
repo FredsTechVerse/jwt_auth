@@ -19,6 +19,10 @@ const posts = [
     title: "Post 1",
   },
   {
+    username: "Benson",
+    title: "Hello this is my info as Benson.",
+  },
+  {
     username: "Alfred",
     title: "Post 2",
   },
@@ -89,11 +93,12 @@ router.post("/login", async (req, res) => {
   // Retrieving user credentials from our database.
   let UserData = await Credentials.findOne({ username: req.body.username });
   if (UserData == null) {
-    res.status(401).json({ message: "User not found" });
+    res.status(400).json({ message: "User not found" });
   }
-  const { username, role, password } = UserData;
   // Step 2 : Comparing passwords using bcrypt compare function.
   try {
+    const { username, role, password } = UserData;
+
     if (await bcrypt.compare(req.body.password, password)) {
       // Step 2 : Generating User Payload, if the user is valid.
       const user = { name: username, role }; //Our payload.
@@ -103,7 +108,7 @@ router.post("/login", async (req, res) => {
       //Step 4 : Saving a copy of the refresh token to our database.
       refreshTokens.push(refreshToken);
       //Step 5 : Sending refresh and access token to client.
-      res.json({ accessToken, refreshToken });
+      res.status(200).json({ accessToken, refreshToken });
     } else {
       res.status(401).json({ message: "User not found hence forbidden." });
     }
