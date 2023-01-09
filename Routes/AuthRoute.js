@@ -57,7 +57,7 @@ router.post("/token", (req, res) => {
       .status(403)
       .json({ message: "Refresh token has not been found." });
   }
-
+  // We need to delete the previous refresh token for security reasons.
   //   Trap 3 : Regenerates our short term access token (Its all about verifying payload and extracting info
   // again to be used in the regeneration of the access token.)
   jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, payload) => {
