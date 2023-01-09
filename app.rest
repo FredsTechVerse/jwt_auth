@@ -6,13 +6,14 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {"username": "Benson",
-"password": "BingBingBing"}
+"password": "Blue"}
 ### REGISTER REQUEST
 POST http://localhost:3000/auth/register
 Content-Type: application/json
 
 {"username": "Benson",
-"password": "BingBingBing"}
+"password": "Blue"
+}
 
 ### REGENERATES ACCESS_TOKEN
 POST http://localhost:3000/auth/token
@@ -30,4 +31,4 @@ Content-Type: application/json
 
 ### DATA CONSUMPTION
 GET http://localhost:3000/auth/posts
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQmVuc29uIiwicm9sZSI6Im5ldyB1c2VyIiwiaWF0IjoxNjcxNjUxNDE0LCJleHAiOjE2NzE2NTIzMTR9.agaCN10XCkBfZJBZ-XCRJ9xqOErL-Zxv8hpbN7sSw2g
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQmVuc29uIiwicm9sZSI6Im5ldyB1c2VyIiwiaWF0IjoxNjczMjU1MzE5LCJleHAiOjE2NzMyNTUzNzl9.j35EYF8fipDmnz1Dlt_TsS-1SlEFDc56HrK2uI67Xuc

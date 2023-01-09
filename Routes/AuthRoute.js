@@ -20,6 +20,7 @@ const posts = [
   },
   {
     username: "Benson",
+    role: [0535, 0534],
     title: "Hello this is my info as Benson.",
   },
   {
@@ -39,6 +40,7 @@ let refreshTokens = [];
 // CONSUMING CONTENT.
 //===================
 router.get("/posts", authenticateToken, (req, res) => {
+  console.log(`Payload to be utilized ${req.user}`);
   res.json(posts.filter((post) => post.username === req.user.name));
 });
 // RENEWING THE ACCESS TOKENS BASED ON THE REFRESH TOKEN
@@ -90,30 +92,37 @@ router.post("/register", async (req, res) => {
 // GENERATES THE REFRESH & ACCESS TOKENS
 //========================================
 router.post("/login", async (req, res) => {
+  console.log(req.body.username);
+
   // Retrieving user credentials from our database.
   let UserData = await Credentials.findOne({ username: req.body.username });
+  console.log(UserData);
   if (UserData == null) {
     res.status(400).json({ message: "User not found" });
-  }
-  // Step 2 : Comparing passwords using bcrypt compare function.
-  try {
+  } else {
     const { username, role, password } = UserData;
 
-    if (await bcrypt.compare(req.body.password, password)) {
-      // Step 2 : Generating User Payload, if the user is valid.
-      const user = { name: username, role }; //Our payload.
-      // Step 3 : Generating the access & refresh tokens
-      const accessToken = generateAccessToken(user);
-      const refreshToken = generateRefreshToken(user);
-      //Step 4 : Saving a copy of the refresh token to our database.
-      refreshTokens.push(refreshToken);
-      //Step 5 : Sending refresh and access token to client.
-      res.status(200).json({ accessToken, refreshToken });
-    } else {
-      res.status(401).json({ message: "User not found hence forbidden." });
+    // Step 2 : Comparing passwords using bcrypt compare function.
+    try {
+      if (await bcrypt.compare(req.body.password, password)) {
+        // Step 2 : Generating User Payload, if the user is valid.
+        const user = { name: username, role }; //Our payload.
+        // Step 3 : Generating the access & refresh tokens
+        const accessToken = generateAccessToken(user);
+        const refreshToken = generateRefreshToken(user);
+        //Step 4 : Saving a copy of the refresh token to our database.
+        refreshTokens.push(refreshToken);
+        //Step 5 : Sending refresh and access token to client.
+        res.status(200).json({ accessToken, refreshToken });
+      } else {
+        res.status(401).json({ message: "The passwords do not match." });
+      }
+    } catch (err) {
+      console.log(err);
+      res
+        .status(500)
+        .json({ message: "Error occured while verifying tokens." });
     }
-  } catch (err) {
-    res.status(500).json({ message: "Error occured while verifying tokens." });
   }
 });
 
